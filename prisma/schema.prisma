@@ -15,9 +15,11 @@ datasource db {
 }
 
 model Ingredient {
-  id    Int     @id @default(autoincrement())
+  id    Int           @id @default(autoincrement())
   name  String
   unit  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   recipes RecipeIngredient[]
 }
 
@@ -25,6 +27,8 @@ model Recipe {
   id           Int                 @id @default(autoincrement())
   title        String
   instructions String
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
   ingredients  RecipeIngredient[]
 }
 

@@ -1,5 +1,8 @@
 pr: 
-  -main
+  - main
+
+pool: 
+  vmImage: 'ubuntu-latest'
 
 jobs:
   - job: Lint
@@ -7,3 +10,22 @@ jobs:
     - checkout: self
       fetchDepth: 0
 
+variables:
+  nodeVersion: '18.x'
+
+steps:
+  # Install Node.js
+  - task: UseNode@1
+    inputs:
+      version: $(nodeVersion)
+    displayName: 'Install Node.js'
+
+  # Install dependencies
+  - script: |
+      npm install
+    displayName: 'Install dependencies'
+
+  # Build the project
+  - script: |
+      npm run build
+    displayName: 'Build project'

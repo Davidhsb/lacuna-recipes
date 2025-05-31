@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import createRecipeDto from './dto/create-recipe.dto';
-import { IngredientsController } from '../ingredients/ingredients.controller';
 import { UpdateRecipeDto } from './dto/update-recipe.dto';
 
 @Injectable()

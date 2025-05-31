@@ -1,5 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { PrismaClient } from '../../generated/prisma';
 
 @Injectable()
-export class PrismaService extends PrismaClient {}
+export class PrismaService extends PrismaClient implements OnModuleInit {
+  async onModuleInit() {
+    try {
+      await this.$connect();
+    }
+    catch (error) {
+      console.error('Error to connecting database:', error);
+    }
+  }
+}
